@@ -1,0 +1,41 @@
+networks:
+  app1dev:
+    driver: bridge
+services:
+  postgres_db:
+    image: postgres:16.0
+    container_name: local_app1_pgdb
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: taxdb
+    volumes:
+      #- local_app1_pgdata:/var/lib/postgresql/data
+      - ./dbdata:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - app1dev
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin4_app1_container
+    restart: always
+    ports:
+      - "5050:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: pingkunga@example.com
+      PGADMIN_DEFAULT_PASSWORD: VeryStrongP@ssw0rd
+    volumes:
+      - pgadmin-app1-data:/var/lib/pgadmin
+    networks:
+      - app1dev
+    depends_on:
+      postgres_db:
+        condition: service_healthy
+volumes:
+  local_app1_pgdata:
+  pgadmin-app1-data:
