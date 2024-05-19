@@ -1,0 +1,30 @@
+services: 
+  mysqldb: 
+    image: mysql:8.0
+    ports: 
+    - 3399:3306
+    environment: 
+    - MYSQL_ROOT_PASSWORD=test 
+    - MYSQL_DATABASE=dev
+    - MYSQL_USER=appdev
+    - MYSQL_PASSWORD=appdev
+    volumes: 
+    - mysql-data:/var/lib/mysql
+  phpmyadmin: 
+    image: phpmyadmin:5.2 
+    ports: 
+     - 8080:80 
+    restart: always
+    #wait for mysql container to start
+    #some db has a long start time so you can use a Healthcheck
+    depends_on: 
+    - mysqldb
+    links: 
+      - mysqldb
+    environment: 
+      PMA_HOST: mysqldb 
+      PMA_PORT: 3306
+      #PMA_USER: root 
+      #PMA_PASSWORD: test
+volumes: 
+   mysql-data:
