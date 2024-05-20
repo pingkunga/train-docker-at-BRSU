@@ -1,46 +1,15 @@
-Slide: https://docs.google.com/presentation/d/e/2PACX-1vR-Gj42iKJT7XST62KS6DGzJi1ItoxJLn34MLJvZntD37nRT4_z-9FFQ9Y04ue9enItGpLK66k1Njy0/pub?start=false&loop=false&delayms=3000
+# Resource 
+
+* Slide: https://docs.google.com/presentation/d/e/2PACX-1vR-Gj42iKJT7XST62KS6DGzJi1ItoxJLn34MLJvZntD37nRT4_z-9FFQ9Y04ue9enItGpLK66k1Njy0/pub?start=false&loop=false&delayms=3000
+
+## Day1
+
+* [Multiple Image with Network and Volume](./Day1/MultipleImageWithVolumeNetwork/)
+
+## Day2
+
+* [Building Image](./Day2/BuildingImage/)
+* [Docker Compose](./Day2/Compose/)
 
 
-Buidling Docker
-
-
-```
-docker pull postgres:16.3-bookworm
-docker run --name invs_postgresdb_raw -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -p 5432:5432 -d postgres:16.3-bookworm
-
-docker exec -it invs_postgresdb_raw psql -U postgres
-
-postgres=# CREATE EXTENSION vector;
-ERROR:  extension "vector" is not available
-DETAIL:  Could not open extension control file "/usr/share/postgresql/16/extension/vector.control": No such file or directory.
-HINT:  The extension must first be installed on the system where PostgreSQL is running.
-
-postgres=# CREATE EXTENSION pg_cron;
-ERROR:  extension "pg_cron" is not available
-DETAIL:  Could not open extension control file "/usr/share/postgresql/16/extension/pg_cron.control": No such file or directory.
-HINT:  The extension must first be installed on the system where PostgreSQL is running.
-```
-
-```
-docker buildx build --platform linux/amd64 -t my_org_postgres:16.3 . --load
-
-docker images
-
-docker run --name invs_postgresdb -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -p 5432:5432 -d my_org_postgres:16.3
-docker exec -it invs_postgresdb psql -U postgres
-
-postgres=# CREATE EXTENSION vector;
-postgres=# CREATE EXTENSION pg_cron;
-
-docker exec -it invs_postgresdb /bin/sh 
-
-```
-
-Reduce Layer 
-
-```
-docker buildx build --platform linux/amd64 -t my_org_postgres-l:16.3 . -f .\DockkerfileNotOptimize --load 
-
-docker images
-```
 
