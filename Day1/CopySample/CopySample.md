@@ -72,3 +72,15 @@ http://localhost:18080/
 http://localhost:18080/simple.html
 ```
 
+# Clean Up Resource 
+
+```
+docker stop webapp
+docker rm webapp
+```
+
+or
+```
+docker rm webapp -force
+```
+
