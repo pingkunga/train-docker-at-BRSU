@@ -1,6 +1,7 @@
 services: 
   mysqldb: 
     image: mysql:8.0
+    #For Expose to External Network
     ports: 
     - 3399:3306
     environment: 

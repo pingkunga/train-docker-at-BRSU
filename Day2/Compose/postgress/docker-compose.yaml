@@ -6,6 +6,7 @@ services:
     image: postgres:16.0
     container_name: local_app1_pgdb
     restart: always
+    #For Expose to External Network
     ports:
       - "5432:5432"
     environment:
