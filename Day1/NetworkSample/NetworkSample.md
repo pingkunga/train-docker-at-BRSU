@@ -30,10 +30,13 @@ ping container2
 #result bad address 'container2'
 ```
 
-- Open another terminal connect network
+- Open another terminal 
 
 ```
+docker network inspect b-net
 docker network connect b-net container2
+
+docker network inspect b-net
 ```
 
 - ping again
@@ -81,4 +84,24 @@ docker run -it --rm --network none busybox:latest
 / # ping google.com
 ping: bad address 'google.com'
 
+```
+
+# Other Command
+
+- removing Containers from Networks
+
+```
+docker network disconnect b-net container2
+```
+
+- list all your Docker networks
+
+```
+docker network ls
+```
+
+- automatically delete all unused networks
+
+```
+docker network prune
 ```
