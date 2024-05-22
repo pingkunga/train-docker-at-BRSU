@@ -4,6 +4,9 @@
 
 ## Day1
 
+* [Copy](./Day1/CopySample/CopySample.md)
+* [Resource Limit](./Day1/ResourceLimitSample/ResourceLimitSample.md)
+* [Network](./Day1/NetworkSample/NetworkSample.md)
 * [Multiple Image with Network and Volume](./Day1/MultipleImageWithVolumeNetwork/)
 
 ## Day2
