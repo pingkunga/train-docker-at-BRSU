@@ -7,6 +7,9 @@ services:
      image: mysql:latest
      volumes:
        - db_data:/var/lib/mysql
+     #Expose the port to the host machine for testing
+     ports:
+       - "3306:3306"
      environment:
        MYSQL_ROOT_PASSWORD_FILE: /run/secrets/db_root_password
        MYSQL_DATABASE: wordpress
