@@ -42,7 +42,8 @@ choco install jq
 - result 
 
 ```
-PS C:\Users\Chatr> docker stats web --no-stream --format "{{ json . }}" | jq
+docker stats web --no-stream --format "{{ json . }}" | jq
+
 {
   "BlockIO": "0B / 0B",
   "CPUPerc": "0.00%",
@@ -60,7 +61,19 @@ PS C:\Users\Chatr> docker stats web --no-stream --format "{{ json . }}" | jq
 - Hard Limit (--memory = Maximum Memory (Hard Limit))
 
 ```
-docker run -d --name mem-limit --memory=256m nginx:alpine
+docker run -d --name mem-limit --memory=256m -p 18080:80 nginx:alpine
+```
+
+test ddos
+```
+docker run -d --name mem-limit --memory=256m -p 18080:80 nginx:alpine
+```
+
+```
+while(1)
+{
+  curl http://localhost:18080/ 
+}
 ```
 
 - Soft Limit (--memory-reservavation = Minimum Memory (Soft Limit))
