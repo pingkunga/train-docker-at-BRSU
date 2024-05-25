@@ -66,7 +66,7 @@ docker run -d --name mem-limit --memory=256m -p 18080:80 nginx:alpine
 
 test ddos
 ```
-docker run -d --name mem-limit --memory=256m -p 18080:80 nginx:alpine
+docker run -d --name mem-limit --memory=13m -p 18080:80 nginx:alpine
 ```
 
 ```
@@ -79,19 +79,22 @@ while(1)
 - Soft Limit (--memory-reservavation = Minimum Memory (Soft Limit))
 
 ```
-docker run -d --name mem-limit --memory=256m --memory-reservation=128m nginx:alpine
+docker run -d --name mem-limit --memory=256m --memory-reservation=128m  -p 18080:80 nginx:alpine
 ```
 
 - Swap Limit (--memory-swap = Excess Memory (Critical Case) )
 
 ```
-docker run -d --name mem-limit --memory=256m --memory-reservation=128m --memory-swap=384m nginx:alpine
+docker run -d --name mem-limit --memory=256m --memory-reservation=128m --memory-swap=384m -p 18080:80 nginx:alpine
 ```
 
 Note: Each Command See the result with 
 
 ```
-docker stats web --no-stream --format "{{ json . }}" | jq
+docker stats mem-limit --no-stream --format "{{ json . }}" | jq
+
+#clear resource
+docker rm -f mem-limit
 ```
 
 # CPU Limit 
@@ -102,17 +105,17 @@ Note: Just vCPU เราอาจจะไม่ต้องไปรู้ว�
 - Fixed CPU Core  (--cpuset-cpus)
 
 ```
-docker run -d --name cpu-limit --cpuset-cpus 0,3 nginx:alpine
+docker run -d --name cpu-limit --cpuset-cpus 0,3  -p 18080:80 nginx:alpine
 
-docker run -d --name cpu-limit --cpuset-cpus 0-3 nginx:alpine
+docker run -d --name cpu-limit --cpuset-cpus 0-3  -p 18080:80 nginx:alpine
 ```
 
 - Fixed by Resource Size / Percent (--cpus)
 
 ```
-docker run -d --name cpu-limit --cpus=0.8 nginx:alpine
+docker run -d --name cpu-limit --cpus=0.8 -p 18080:80 nginx:alpine
 
-docker run -d --name cpu-limit --cpus=1.5 nginx:alpine  
+docker run -d --name cpu-limit --cpus=1.5 -p 18080:80 nginx:alpine  
 ```
 
 - Mix
@@ -121,12 +124,18 @@ docker run -d --name cpu-limit --cpus=1.5 nginx:alpine
 docker run -d --name cpu-limit --cpus=2.0 --cpuset-cpus=0,1 nginx:alpine
 
 docker run -d --name cpu-limit --cpus=1.5 --cpuset-cpus=0,1 nginx:alpine
+
+docker run -d --name cpu-limit --cpus=0.25 --memory=15m -p 18080:80 nginx:alpine
+
 ```
 
 Note: Each Command See the result with 
 
 ```
-docker stats web --no-stream --format "{{ json . }}" | jq
+docker stats cpu-limit --no-stream --format "{{ json . }}" | 
+
+#clear resource
+docker rm -f cpu-limit
 ```
 
 ```
