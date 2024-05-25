@@ -51,6 +51,8 @@ CONTAINER ID   NAME                CPU %     MEM USAGE / LIMIT     MEM %     NET
 5993b2a0d118   aspnetcore_sample   0.01%     26.17MiB / 15.22GiB   0.17%     1.53kB / 656B   0B / 0B     28
 ```
 
+# With Limit
+
 5. ctrl+c to stop aspnetcore_sample
 
 and create container with resource limit
@@ -58,6 +60,8 @@ and create container with resource limit
 ```
 docker run -it --rm -p 8000:8080 --memory=48m --memory-reservation=32m --memory-swap=64m --cpus=0.8 --name aspnetcore_sample mcr.microsoft.com/dotnet/samples:aspnetapp
 ```
+
+6. repeat step 2-4 again
 
 
 
