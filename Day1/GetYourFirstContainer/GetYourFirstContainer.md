@@ -17,7 +17,7 @@ Create NGINX container with requirement
 - auto remove when container stop
 
 ```
-docker create --rm -d -p 18080:80 --name webapp nginx
+docker create --rm -p 18080:80 --name webapp nginx
 ```
 
 Check Container Status & Inspect
