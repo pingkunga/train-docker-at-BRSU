@@ -48,7 +48,7 @@ result
 
 ```
 CONTAINER ID   NAME                CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O   PIDS
-5993b2a0d118   aspnetcore_sample   0.01%     26.17MiB / 15.22GiB   0.17%     1.53kB / 656B   0B / 0B     28
+5993b2a0d118   aspnetcore_sample   0.01%     25.1MiB / 15.22GiB   0.17%     1.53kB / 656B   0B / 0B     28
 ```
 
 # With Limit
@@ -62,6 +62,14 @@ docker run -it --rm -p 8000:8080 --memory=48m --memory-reservation=32m --memory-
 ```
 
 6. repeat step 2-4 again
+
+
+result the resource should limit like below
+
+```
+CONTAINER ID   NAME                CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O   PIDS
+5993b2a0d118   aspnetcore_sample   25.75%     40.81MiB / 48GiB     85.02%    57.5MB / 486MB   0B / 0B     28
+```
 
 
 
