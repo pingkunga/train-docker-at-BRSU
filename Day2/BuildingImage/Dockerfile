@@ -13,6 +13,7 @@ RUN echo "cron.database_name='postgres'" >> /usr/share/postgresql/postgresql.con
 #Note Copy Example 
 #Not for postgresql
 COPY ./SampleCompany.conf usr/share/postgresql/SampleCompany.conf
+#COPY ./Secret.txt usr/share/postgresql/Secret.txt
 #For your own database name
 #RUN echo "shared_preload_libraries='pg_cron'" >> /usr/share/postgresql/postgresql.conf
 #RUN echo "cron.database_name='your_db_name'" >> /usr/share/postgresql/postgresql.conf
