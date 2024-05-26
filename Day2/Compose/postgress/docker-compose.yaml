@@ -1,7 +1,17 @@
 networks:
+  #docker network create app1dev
   app1dev:
     driver: bridge
 services:
+  #docker run --name postgres_app1 
+  #           --network=app1dev 
+  #           -p 5432:5432 
+  #           -e POSTGRES_USER=postgres 
+  #           -e POSTGRES_PASSWORD=postgres 
+  #           -e POSTGRES_DB=taxdb 
+  #           -v ${pwd}/dbdata:/var/lib/postgresql/data 
+  #           -v ${pwd}/init.sql:/docker-entrypoint-initdb.d/init.sql 
+  #           -d postgres:16
   postgres_db:
     image: postgres:16.0
     container_name: local_app1_pgdb
@@ -31,6 +41,14 @@ services:
         reservations:
           cpus: '0.25'
           memory: 256M
+  #docker run --name pgadmin4_app1 
+  #           --network=app1dev 
+  #           -p 5050:80 
+  #           -e PGADMIN_DEFAULT_EMAIL=pingkunga@example.com 
+  #           -e PGADMIN_DEFAULT_PASSWORD=VeryStrongP@ssw0rd 
+  #           -v pgadmin-app1-data:/var/lib/pgadmin -d 
+  #           dpage/pgadmin4
+  #
   pgadmin:
     image: dpage/pgadmin4
     container_name: pgadmin4_app1_container
