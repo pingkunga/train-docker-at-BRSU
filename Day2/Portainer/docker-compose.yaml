@@ -1,0 +1,20 @@
+services:
+  portainer:
+    container_name: portainer
+    image: portainer/portainer-ce:latest
+    security_opt:
+      - no-new-privileges:true                          #prevents the application processes inside the container from gaining new privileges during execution.
+    ports:
+      - '8000:8000'
+      - '9443:9443'                                     #Port for HTTPS
+    volumes:
+      #- 'portainer_data:/data'
+      - ./portainer-data:/data                          #Mount the data volume
+      - '/var/run/docker.sock:/var/run/docker.sock'     #Connect to the Docker socket for management
+      - /etc/localtime:/etc/localtime:ro                #Set the timezone for the host
+    environment:
+      AGENT_SECRET: my_secret_token                     #If you set AGENT_SECRET to a value, you must provide the same value when you deploy the agent.
+    restart: unless-stopped
+
+#volumes:
+  #portainer_data:
