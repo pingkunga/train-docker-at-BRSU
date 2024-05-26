@@ -1,0 +1,15 @@
+services: 
+  mysqldb: 
+    image: mysql:8.0
+    #For Expose to External Network
+    ports: 
+    - 3399:3306
+    environment: 
+    - MYSQL_ROOT_PASSWORD=test 
+    - MYSQL_DATABASE=dev
+    - MYSQL_USER=appdev
+    - MYSQL_PASSWORD=appdev
+    volumes: 
+    - mysql-data:/var/lib/mysql
+volumes: 
+   mysql-data:
