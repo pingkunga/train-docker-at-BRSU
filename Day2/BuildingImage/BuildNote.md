@@ -1,3 +1,11 @@
+Set up Docker BuildX
+
+```
+#Create Builder (Container)
+docker buildx create --name mybuilder
+docker buildx use mybuilder
+```
+
 Buidling Docker
 
 
