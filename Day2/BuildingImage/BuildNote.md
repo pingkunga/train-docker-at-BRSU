@@ -21,7 +21,7 @@ HINT:  The extension must first be installed on the system where PostgreSQL is r
 ```
 docker buildx build --platform linux/amd64 -t my_org_postgres:16.3 . --load
 
-docker images
+docker images "my_org_postgres*"
 
 docker run --name invs_postgresdb -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -p 5432:5432 -d my_org_postgres:16.3
 docker exec -it invs_postgresdb psql -U postgres
