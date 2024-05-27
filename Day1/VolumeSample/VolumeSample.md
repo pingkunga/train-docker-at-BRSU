@@ -22,7 +22,9 @@ docker run --name mysql-db -d -e MYSQL_ROOT_PASSWORD=secret -v  mysql-files:/var
 - check
 
 ```
-docker ps --filter "label=training.app"
+docker ps --filter "label=dev.app"
+
+docker ps --filter "label=dev.app=persistent-db"
 ```
 
 - Remove a volume (only works if it’s not in use) 
@@ -46,7 +48,7 @@ docker run --name mysql-db-mount -d -e MYSQL_ROOT_PASSWORD=secret -v $(pwd)/DBDE
 - check
 
 ```
-docker ps --filter "label=training.app"
+docker ps --filter "label=training.app=persistent-db"
 ```
 
 # Clear All Unused Volume
